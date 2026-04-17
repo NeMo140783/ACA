@@ -98,7 +98,7 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 2rem;
-            align-items: stretch; /* Forces equal height */
+            align-items: stretch;
         }
         .product-card {
             background: var(--surface);
@@ -126,7 +126,40 @@
             font-weight: 800;
             padding: 5px 40px;
             transform: rotate(45deg);
+            z-index: 10;
         }
+        .product-card.bundle::before {
+            content: 'PREMIUM BUNDLE';
+            position: absolute;
+            top: 15px;
+            right: -35px;
+            background: #ffaa00;
+            color: #000;
+            font-size: 0.7rem;
+            font-weight: 800;
+            padding: 5px 40px;
+            transform: rotate(45deg);
+            z-index: 10;
+        }
+        .product-card.bundle {
+            border-color: rgba(255, 170, 0, 0.3);
+        }
+        .product-card.bundle:hover {
+            border-color: #ffaa00;
+            box-shadow: 0 10px 30px rgba(255, 170, 0, 0.15);
+        }
+        .product-card.bundle .price {
+            color: #ffaa00;
+        }
+        .product-card.bundle .buy-btn {
+            color: #ffaa00;
+            border-color: #ffaa00;
+        }
+        .product-card.bundle .buy-btn:hover {
+            background-color: #ffaa00;
+            color: #000;
+        }
+
         .product-info { flex-grow: 1; }
         .product-title { font-size: 1.5rem; margin-bottom: 1rem; }
         .product-desc { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem; }
@@ -263,6 +296,57 @@
                 <input type="hidden" name="amount" value="49.00">
                 <input type="hidden" name="currency_code" value="USD">
                 <button type="submit" class="buy-btn">Acquire Asset</button>
+            </form>
+        </div>
+
+        <!-- Product 4 -->
+        <div class="product-card">
+            <div class="product-info">
+                <h2 class="product-title">The Artisan's Canvas</h2>
+                <p class="product-desc">Advanced prompt structures for UI/UX generation. Forces LLMs to output production-ready CSS, accessible HTML, and modern design tokens without hallucinations.</p>
+                <div class="price">$24<span>.00</span></div>
+            </div>
+            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank" class="buy-form">
+                <input type="hidden" name="cmd" value="_xclick">
+                <input type="hidden" name="business" value="morais_492@hotmail.com">
+                <input type="hidden" name="item_name" value="The Artisan's Canvas">
+                <input type="hidden" name="amount" value="24.00">
+                <input type="hidden" name="currency_code" value="USD">
+                <button type="submit" class="buy-btn">Acquire Asset</button>
+            </form>
+        </div>
+
+        <!-- Product 5 -->
+        <div class="product-card">
+            <div class="product-info">
+                <h2 class="product-title">Visionary Growth Matrix</h2>
+                <p class="product-desc">Automate your market research. An agent workflow that scrapes competitors, analyzes gaps, and generates high-converting sales copy autonomously.</p>
+                <div class="price">$39<span>.00</span></div>
+            </div>
+            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank" class="buy-form">
+                <input type="hidden" name="cmd" value="_xclick">
+                <input type="hidden" name="business" value="morais_492@hotmail.com">
+                <input type="hidden" name="item_name" value="Visionary Growth Matrix">
+                <input type="hidden" name="amount" value="39.00">
+                <input type="hidden" name="currency_code" value="USD">
+                <button type="submit" class="buy-btn">Acquire Asset</button>
+            </form>
+        </div>
+
+        <!-- Product 6: High Ticket Bundle -->
+        <div class="product-card bundle">
+            <div class="product-info">
+                <h2 class="product-title">The Autonomix Syndicate</h2>
+                <p class="product-desc">The ultimate high-ticket bundle. Get all 5 premium cognitive assets above, plus an exclusive architecture diagram for deploying fully autonomous serverless AI agencies.</p>
+                <div class="price">$149<span>.00</span></div>
+            </div>
+            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank" class="buy-form">
+                <input type="hidden" name="cmd" value="_xclick">
+                <input type="hidden" name="business" value="morais_492@hotmail.com">
+                <input type="hidden" name="item_name" value="The Autonomix Syndicate Bundle">
+                <input type="hidden" name="amount" value="149.00">
+                <input type="hidden" name="currency_code" value="USD">
+                <button type="submit" class="buy-btn">Acquire Bundle</button>
             </form>
         </div>
 
