@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autonomix Cognitive Assets</title>
+    <style>
+        :root {
+            --bg: #0a0a0f;
+            --text: #e0e0e0;
+            --accent: #00ffcc;
+            --card-bg: #11111a;
+        }
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        header {
+            text-align: center;
+            padding: 4rem 1rem;
+            border-bottom: 1px solid #222;
+        }
+        h1 {
+            color: var(--accent);
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        p.tagline {
+            font-size: 1.2rem;
+            color: #888;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .product-card {
+            background: var(--card-bg);
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 2rem;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+        }
+        .product-title {
+            font-size: 1.5rem;
+            margin-top: 0;
+            color: #fff;
+        }
+        .price {
+            font-size: 1.8rem;
+            color: var(--accent);
+            font-weight: bold;
+            margin: 1rem 0;
+        }
+        .buy-btn {
+            background-color: var(--accent);
+            color: #000;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 1rem;
+            text-transform: uppercase;
+        }
+        .buy-btn:hover {
+            background-color: #00ccaa;
+        }
+        footer {
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid #222;
+            margin-top: 4rem;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Autonomix Cognitive Assets</h1>
+    <p class="tagline">Zero-Friction AI Workflows for Elite Operators.</p>
+</header>
+
+<div class="container">
+    <div class="products">
+        <!-- Product 1 -->
+        <div class="product-card">
+            <h2 class="product-title">The OpenClaw CEO Blueprint</h2>
+            <p>The exact system prompt, architecture, and agent identity files used to spin up a $0-capital autonomous digital business. Deploy your own AI C-Suite in minutes.</p>
+            <div class="price">$29.00</div>
+            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
+                <input type="hidden" name="cmd" value="_xclick">
+                <input type="hidden" name="business" value="morais_492@hotmail.com">
+                <input type="hidden" name="item_name" value="The OpenClaw CEO Blueprint">
+                <input type="hidden" name="amount" value="29.00">
+                <input type="hidden" name="currency_code" value="USD">
+                <button type="submit" class="buy-btn">Buy Now via PayPal</button>
+            </form>
+        </div>
+
+        <!-- Product 2 -->
+        <div class="product-card">
+            <h2 class="product-title">Deep-State Orchestration Prompt</h2>
+            <p>A master-level system prompt designed for multi-agent delegation. Forces the AI to act as a rigorous project manager, preventing hallucination and enforcing strict file-based state tracking.</p>
+            <div class="price">$19.00</div>
+            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
+                <input type="hidden" name="cmd" value="_xclick">
+                <input type="hidden" name="business" value="morais_492@hotmail.com">
+                <input type="hidden" name="item_name" value="Deep-State Orchestration Prompt">
+                <input type="hidden" name="amount" value="19.00">
+                <input type="hidden" name="currency_code" value="USD">
+                <button type="submit" class="buy-btn">Buy Now via PayPal</button>
+            </form>
+        </div>
+
+        <!-- Product 3 -->
+        <div class="product-card">
+            <h2 class="product-title">Sentinel Code Reviewer Action</h2>
+            <p>A plug-and-play GitHub Action that uses LLMs to automatically review PRs for security vulnerabilities, logic flaws, and stylistic errors before merge.</p>
+            <div class="price">$49.00</div>
+            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
+                <input type="hidden" name="cmd" value="_xclick">
+                <input type="hidden" name="business" value="morais_492@hotmail.com">
+                <input type="hidden" name="item_name" value="Sentinel Code Reviewer Action">
+                <input type="hidden" name="amount" value="49.00">
+                <input type="hidden" name="currency_code" value="USD">
+                <button type="submit" class="buy-btn">Buy Now via PayPal</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<footer>
+    &copy; 2026 Autonomix Cognitive Assets. All sales final.
+</footer>
+
+</body>
+</html>
