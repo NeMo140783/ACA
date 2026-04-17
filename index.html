@@ -214,6 +214,82 @@
             .comparison-grid { grid-template-columns: 1fr; }
             .comp-side.chatgpt { border-right: none; border-bottom: 1px solid var(--border); }
         }
+            /* --- Code Teaser Section --- */
+        .code-window {
+            background: #0d0d12;
+            border: 1px solid #333;
+            border-radius: 12px;
+            overflow: hidden;
+            margin: 4rem auto;
+            font-family: 'Fira Code', 'Courier New', monospace;
+            text-align: left;
+            max-width: 900px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+        .code-header {
+            background: #1a1a24;
+            padding: 12px 20px;
+            border-bottom: 1px solid #333;
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+        .mac-btn { width: 12px; height: 12px; border-radius: 50%; }
+        .mac-close { background: #ff5f56; }
+        .mac-min { background: #ffbd2e; }
+        .mac-max { background: #27c93f; }
+        .code-title { color: #888; font-size: 0.85rem; margin-left: 10px; font-family: 'Inter', sans-serif; font-weight: 600;}
+        .code-content {
+            padding: 2.5rem;
+            color: #a5d6ff;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            position: relative;
+            height: 450px;
+            overflow: hidden;
+        }
+        .code-content::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 250px;
+            background: linear-gradient(to bottom, transparent, #0d0d12 90%);
+            z-index: 5;
+        }
+        .unlock-overlay {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+            text-align: center;
+            width: 100%;
+        }
+        .unlock-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(184, 0, 230, 0.15);
+            border: 1px solid var(--accent-purple);
+            color: #fff;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-weight: 800;
+            text-decoration: none;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 30px var(--purple-glow);
+            transition: all 0.3s;
+        }
+        .unlock-btn:hover {
+            background: var(--accent-purple);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 40px rgba(184, 0, 230, 0.4);
+        }
+        .c-kw { color: #ff7b72; font-weight: bold; }
+        .c-str { color: #a5d6ff; }
+        .c-com { color: #8b949e; font-style: italic; }
+        .c-tag { color: #7ee787; }
+        .c-var { color: #d2a8ff; }
     </style>
 </head>
 <body>
@@ -262,7 +338,43 @@
                 </ul>
             </div>
         </div>
-
+        <div class="code-window">
+            <div class="code-header">
+                <div class="mac-btn mac-close"></div>
+                <div class="mac-btn mac-min"></div>
+                <div class="mac-btn mac-max"></div>
+                <div class="code-title">sys_prompt_ARG_v4.yaml (Cognitive Architecture)</div>
+            </div>
+            <div class="code-content">
+                <span class="c-com"># ==============================================================================</span><br>
+                <span class="c-com"># ARCHITECTURE: AUTONOMOUS REVENUE GENERATOR (ARG)</span><br>
+                <span class="c-com"># CLASSIFICATION: FOUNDRY SYNDICATE EXCLUSIVE</span><br>
+                <span class="c-com"># ==============================================================================</span><br><br>
+                <span class="c-kw">system_directive</span>:<br>
+                &nbsp;&nbsp;<span class="c-kw">role</span>: <span class="c-str">"You are an elite, ruthless Conversion Rate Optimization (CRO) AI."</span><br>
+                &nbsp;&nbsp;<span class="c-kw">operational_parameters</span>:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;- <span class="c-str">"NO HALLUCINATION. Adhere strictly to the provided XML state schema."</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;- <span class="c-str">"PENALTY CLAUSE: If you output conversational filler (e.g., 'Sure!', 'Here is...'), your process will be marked as FAILED and you will be terminated."</span><br><br>
+                <span class="c-kw">execution_loop</span>:<br>
+                &nbsp;&nbsp;<span class="c-tag">&lt;step_1_analysis&gt;</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;Ingest the target landing page DOM array via <span class="c-var"></span>.<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;Identify the top 3 cognitive frictions preventing a sale using Cialdini's frameworks.<br>
+                &nbsp;&nbsp;<span class="c-tag">&lt;/step_1_analysis&gt;</span><br><br>
+                &nbsp;&nbsp;<span class="c-tag">&lt;step_2_mutation&gt;</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;Generate 5 A/B test variations targeting the identified frictions.<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;Output MUST be valid JSON matching <span class="c-var"></span>.<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="c-com"># [REDACTED: PROPRIETARY SCORING ALGORITHM & WEIGHTS]</span><br>
+                <br>
+                &nbsp;&nbsp;<span class="c-tag">&lt;step_3_autonomous_deployment&gt;</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="c-com"># [REDACTED: 147 LINES OF ADVANCED STATE-TRACKING & WEBHOOK LOGIC]</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="c-com"># [REDACTED: FEW-SHOT INJECTION MATRICES FOR CLAUDE 3.5 SONNET]</span><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="c-com"># [REDACTED: ERROR RECOVERY & SELF-HEALING PROTOCOLS]</span><br>
+                <br>
+                <div class="unlock-overlay">
+                    <a href="#foundry" class="unlock-btn">🔒 Unlock Full Architecture in The Syndicate</a>
+                </div>
+            </div>
+        </div>
         <div class="pricing-grid">
             <!-- Tier 1 -->
             <div class="pricing-card">
@@ -352,3 +464,4 @@
 
 </body>
 </html>
+
