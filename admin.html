@@ -37,22 +37,46 @@
                 <th>Action</th>
             </tr>
         </thead>
-        <tbody>
-            <tr>
-                <td>user_992@startup.io (Syndicate)</td>
-                <td>Automated Cold Email Personalization Agent</td>
-                <td>2 mins ago</td>
-                <td><span class="status pending">Awaiting Agents</span></td>
-                <td><button class="btn">Process Request</button></td>
-            </tr>
-            <tr>
-                <td>dev_ops_x@corp.net (Operator)</td>
-                <td>Terraform Error Healing Prompt</td>
-                <td>1 hr ago</td>
-                <td><span class="status completed">Delivered</span></td>
-                <td><button class="btn" style="border-color: #333; color: #888;">View Output</button></td>
-            </tr>
-        </tbody>
+        <tbody id="requests-body"></tbody>
     </table>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/config.js"></script>
+<script>
+    async function fetchRequests() {
+        const { data, error } = await supabaseClient
+            .from('foundry_requests')
+            .select('*')
+            .order('created_at', { ascending: false });
+
+        if (error) {
+            console.error('Error fetching requests:', error);
+            return;
+        }
+
+        const tbody = document.getElementById('requests-body');
+        tbody.innerHTML = ''; // Clear mock data
+
+        if (data.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="5" style="text-align:center; color:#888;">No incoming requests yet.</td></tr>';
+            return;
+        }
+
+        data.forEach(req => {
+            const statusClass = req.status === 'pending' ? 'status pending' : 'status completed';
+            const tr = document.createElement('tr');
+            tr.innerHTML = 
+                <td> + req.user_id.substring(0,8) + ...</td>
+                <td> + req.title + </td>
+                <td> + new Date(req.created_at).toLocaleString() + </td>
+                <td><span class=" + statusClass + "> + req.status.toUpperCase() + </span></td>
+                <td><button class="btn" onclick="alert('Raw Data:\\n' + ' + req.description.replace(/'/g, "\\'") + ')">View Spec</button></td>
+            ;
+            tbody.appendChild(tr);
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', fetchRequests);
+</script>
 </body>
 </html>
+
