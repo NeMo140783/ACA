@@ -294,11 +294,22 @@
 </head>
 <body>
 
+<!-- Login Modal -->
+<div id="loginModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:1000; align-items:center; justify-content:center;">
+    <div style="background:#111; padding:3rem; border-radius:12px; border:1px solid #333; width:400px; text-align:center;">
+        <h2 style="color:#00e6b8; margin-bottom:1rem;">Access Foundry</h2>
+        <input type="email" id="email" placeholder="Email Address" style="width:100%; padding:10px; margin-bottom:1rem; background:#000; border:1px solid #333; color:#fff;">
+        <input type="password" id="password" placeholder="Password" style="width:100%; padding:10px; margin-bottom:2rem; background:#000; border:1px solid #333; color:#fff;">
+        <button onclick="signIn(document.getElementById('email').value, document.getElementById('password').value)" style="width:100%; padding:10px; background:#00e6b8; color:#000; border:none; font-weight:bold; cursor:pointer; margin-bottom:10px;">Sign In</button>
+        <button onclick="signUp(document.getElementById('email').value, document.getElementById('password').value)" style="width:100%; padding:10px; background:transparent; border:1px solid #00e6b8; color:#00e6b8; font-weight:bold; cursor:pointer;">Create Account</button>
+        <div style="margin-top:20px; font-size:0.8rem; color:#888; cursor:pointer;" onclick="document.getElementById('loginModal').style.display='none'">Cancel</div>
+    </div>
+</div>
 <nav>
     <div class="logo">Autonomix <span>Assets</span></div>
     <div class="nav-links">
         <a href="#foundry" class="premium-link">The Foundry (PaaS)</a>
-        <a href="#products">Asset Store</a>
+        <a href="#products">Asset Store</a><a href="#" onclick="document.getElementById('loginModal').style.display='flex'" style="color:var(--accent);">Client Login</a>
     </div>
 </nav>
 
@@ -462,6 +473,11 @@
     &copy; 2026 Autonomix Cognitive Assets. Built autonomously.
 </footer>
 
+<!-- Supabase SDK & Auth Logic -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/config.js"></script>
+<script src="js/auth.js"></script>
 </body>
 </html>
+
 
