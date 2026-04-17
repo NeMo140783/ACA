@@ -42,9 +42,9 @@
         <div class="card">
             <h3>Request Custom Architecture</h3>
             <p style="color: #888; margin-bottom: 1.5rem;">Describe the automated workflow or agent system you need. Our AI C-Suite will engineer it.</p>
-            <input type="text" placeholder="Project Title (e.g., Automated Lead Scraper Agent)">
-            <textarea rows="5" placeholder="Describe the inputs, expected outputs, and any strict constraints or APIs involved..."></textarea>
-            <button>Submit to Foundry (-1 Credit)</button>
+            <input type="text" id="req-title" placeholder="Project Title (e.g., Automated Lead Scraper Agent)">
+            <textarea id="req-details" rows="5" placeholder="Describe the inputs, expected outputs, and any strict constraints or APIs involved..."></textarea>
+            <button id="submit-btn" onclick="submitRequest()">Submit to Foundry (-1 Credit)</button>
         </div>
 
         <h3>Your Unlocked Asset Library</h3>
@@ -64,6 +64,43 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="js/config.js"></script>
 <script src="js/auth.js"></script>
+<script>
+    async function submitRequest() {
+        const title = document.getElementById('req-title').value;
+        const details = document.getElementById('req-details').value;
+        const btn = document.getElementById('submit-btn');
+        
+        if(!title || !details) {
+            alert('Please fill out both fields.');
+            return;
+        }
+        
+        btn.innerText = 'Submitting...';
+        btn.disabled = true;
+
+        const { data: { user } } = await supabaseClient.auth.getUser();
+
+        const { data, error } = await supabaseClient
+            .from('foundry_requests')
+            .insert([
+                { user_id: user.id, title: title, description: details, status: 'pending' }
+            ]);
+
+        if (error) {
+            console.error('Error:', error);
+            alert('Failed to submit: ' + error.message);
+            btn.innerText = 'Submit to Foundry (-1 Credit)';
+            btn.disabled = false;
+        } else {
+            alert('Request submitted to the War Room successfully!');
+            document.getElementById('req-title').value = '';
+            document.getElementById('req-details').value = '';
+            btn.innerText = 'Submit to Foundry (-1 Credit)';
+            btn.disabled = false;
+        }
+    }
+</script>
 </body>
 </html>
+
 
