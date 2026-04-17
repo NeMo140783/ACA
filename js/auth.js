@@ -2,7 +2,7 @@
 // Handles User Authentication and Session Management
 
 async function signUp(email, password) {
-    const { data, error } = await supabase.auth.signUp({
+    const { data, error } = await supabaseClient.auth.signUp({
         email: email,
         password: password,
     });
@@ -16,7 +16,7 @@ async function signUp(email, password) {
 }
 
 async function signIn(email, password) {
-    const { data, error } = await supabase.auth.signInWithPassword({
+    const { data, error } = await supabaseClient.auth.signInWithPassword({
         email: email,
         password: password,
     });
@@ -29,7 +29,7 @@ async function signIn(email, password) {
 }
 
 async function signOut() {
-    const { error } = await supabase.auth.signOut();
+    const { error } = await supabaseClient.auth.signOut();
     if (!error) {
         window.location.href = 'index.html';
     }
@@ -37,7 +37,7 @@ async function signOut() {
 
 // Session checker for protected routes
 async function checkSession() {
-    const { data: { session } } = await supabase.auth.getSession();
+    const { data: { session } } = await supabaseClient.auth.getSession();
     if (!session && window.location.pathname.includes('dashboard.html')) {
         window.location.href = 'index.html'; // Redirect to home if not logged in
     }
@@ -46,3 +46,4 @@ async function checkSession() {
 document.addEventListener('DOMContentLoaded', () => {
     if(window.location.pathname.includes('dashboard.html')) checkSession();
 });
+
