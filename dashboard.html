@@ -118,24 +118,23 @@
 <script src="js/config.js"></script>
 <script src="js/auth.js"></script>
 <script>
-    function showToast(message, isError = false) {
+    window.showToast = function(message, isError = false) {
         const toast = document.getElementById("toast");
         toast.innerText = message;
         toast.style.backgroundColor = isError ? "#ff4444" : "#00e6b8";
         toast.style.color = isError ? "#fff" : "#000";
         toast.className = "show";
         setTimeout(function(){ toast.className = toast.className.replace("show", ""); }, 3000);
-    }
+    };
 
-    // Example Prompts Data - using string literal escaping carefully
-    const promptLibrary = {
-        'ceo': SYSTEM DIRECTIVE: You are the CEO of a -capital digital enterprise.\nOPERATIONAL PARAMETERS:\n1. Delegate all coding, UX, and QA tasks to specialized sub-agents.\n2. Maintain strict file-based state tracking in WAR_ROOM.md.\n3. Deny any request that requires upfront capital expenditure.\n\nEXECUTION LOOP:\n<analyze_request> -> <decompose_tasks> -> <delegate> -> <review_output> -> <deploy>,
-        'orchestrator': SYSTEM DIRECTIVE: Multi-Agent Deep State Orchestrator.\nWARNING: Hallucination of state is a fatal error.\n\n1. Before any action, read local memory files.\n2. Use rigid JSON tagging for inter-agent messaging.\n<message to="Architect">\n{ "task": "Build UI", "constraints": ["dark mode", "flexbox"] }\n</message>\n3. Only confirm completion when file hashes match expected state.
+    window.promptLibrary = {
+        'ceo': 'SYSTEM DIRECTIVE: You are the CEO of a -capital digital enterprise.\\nOPERATIONAL PARAMETERS:\\n1. Delegate all coding, UX, and QA tasks to specialized sub-agents.\\n2. Maintain strict file-based state tracking in WAR_ROOM.md.\\n3. Deny any request that requires upfront capital expenditure.\\n\\nEXECUTION LOOP:\\n<analyze_request> -> <decompose_tasks> -> <delegate> -> <review_output> -> <deploy>',
+        'orchestrator': 'SYSTEM DIRECTIVE: Multi-Agent Deep State Orchestrator.\\nWARNING: Hallucination of state is a fatal error.\\n\\n1. Before any action, read local memory files.\\n2. Use rigid JSON tagging for inter-agent messaging.\\n<message to="Architect">\\n{ "task": "Build UI", "constraints": ["dark mode", "flexbox"] }\\n</message>\\n3. Only confirm completion when file hashes match expected state.'
     };
 
     window.openModal = function(id, title) {
         document.getElementById('modalTitle').innerText = title;
-        document.getElementById('modalCode').innerText = promptLibrary[id] || 'Loading...';
+        document.getElementById('modalCode').innerText = window.promptLibrary[id] || 'Loading...';
         document.getElementById('promptModal').style.display = 'flex';
     };
 
@@ -146,11 +145,10 @@
     window.copyCode = function() {
         const code = document.getElementById('modalCode').innerText;
         navigator.clipboard.writeText(code);
-        showToast('Copied to clipboard!');
+        window.showToast('Copied to clipboard!');
     };
 
-    // Fetch User's Submitted Requests
-    async function loadUserRequests() {
+    window.loadUserRequests = async function() {
         const { data: { user } } = await supabaseClient.auth.getUser();
         if (!user) return;
 
@@ -167,14 +165,12 @@
 
         const libraryGrid = document.getElementById('library-grid');
         
-        // Keep the two examples, remove previously loaded dynamic ones if any
         Array.from(libraryGrid.children).forEach(child => {
             if (child.classList.contains('dynamic-req')) child.remove();
         });
 
-        // Update the sidebar pending count
         const pendingCount = data.filter(r => r.status === 'pending').length;
-        document.getElementById('nav-requests').innerText = My Requests ( + pendingCount +  Pending);
+        document.getElementById('nav-requests').innerText = 'My Requests (' + pendingCount + ' Pending)';
 
         data.forEach(req => {
             const card = document.createElement('div');
@@ -182,20 +178,18 @@
             
             let actionButton = '';
             if (req.status === 'completed') {
-                actionButton = <button style="padding: 5px 10px; font-size: 0.8rem; margin-top: 10px; background: transparent; border: 1px solid var(--accent); color: var(--accent);" onclick="openModal('custom_ + req.id + ', ' + req.title.replace(/'/g, "\\'") + ')">View Code</button>;
-                promptLibrary['custom_' + req.id] = req.result;
+                // To avoid quoting issues with title, base64 encode or just use generic text
+                const safeTitle = encodeURIComponent(req.title);
+                actionButton = '<button style="padding: 5px 10px; font-size: 0.8rem; margin-top: 10px; background: transparent; border: 1px solid var(--accent); color: var(--accent);" onclick="window.openModal(\\'custom_' + req.id + '\\', decodeURIComponent(\\'' + safeTitle + '\\'))">View Code</button>';
+                window.promptLibrary['custom_' + req.id] = req.result;
             } else {
-                actionButton = <span style="font-size: 0.8rem; color: #ffaa00; margin-top:10px; display:inline-block; font-weight:bold;">STATUS: PENDING</span>;
+                actionButton = '<span style="font-size: 0.8rem; color: #ffaa00; margin-top:10px; display:inline-block; font-weight:bold;">STATUS: PENDING</span>';
             }
 
-            card.innerHTML = 
-                <h4> + req.title + </h4>
-                <p style="font-size: 0.85rem; color: #888;">Custom Request</p>
-                 + actionButton + 
-            ;
+            card.innerHTML = '<h4>' + req.title + '</h4><p style="font-size: 0.85rem; color: #888;">Custom Request</p>' + actionButton;
             libraryGrid.prepend(card);
         });
-    }
+    };
 
     window.submitRequest = async function() {
         const title = document.getElementById('req-title').value;
@@ -203,7 +197,7 @@
         const btn = document.getElementById('submit-btn');
         
         if(!title || !details) {
-            showToast('Please fill out both fields.', true);
+            window.showToast('Please fill out both fields.', true);
             return;
         }
         
@@ -220,28 +214,28 @@
 
         if (error) {
             console.error('Error:', error);
-            showToast('Failed to submit: ' + error.message, true);
+            window.showToast('Failed to submit: ' + error.message, true);
             btn.innerText = 'Submit to Foundry (-1 Credit)';
             btn.disabled = false;
         } else {
-            showToast('Request submitted securely to the War Room!');
+            window.showToast('Request submitted securely to the War Room!');
             document.getElementById('req-title').value = '';
             document.getElementById('req-details').value = '';
             btn.innerText = 'Submit to Foundry (-1 Credit)';
             btn.disabled = false;
             
-            // Reload the grid to show the new pending request
-            loadUserRequests();
+            window.loadUserRequests();
         }
     };
 
     document.addEventListener('DOMContentLoaded', () => {
-        loadUserRequests();
+        window.loadUserRequests();
     });
 </script>
     <div id="toast">Request submitted to the War Room!</div>
 </body>
 </html>
+
 
 
 
