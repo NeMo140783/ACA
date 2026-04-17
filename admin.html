@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin | Autonomix War Room</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg: #050505; --surface: #111111; --text: #f0f0f0; --accent: #b800e6; --border: #222222; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); margin: 0; padding: 2rem 5%; }
+        .header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); padding-bottom: 1rem; margin-bottom: 2rem; }
+        h1 span { color: var(--accent); }
+        table { width: 100%; border-collapse: collapse; background: var(--surface); border-radius: 8px; overflow: hidden; }
+        th, td { padding: 15px; text-align: left; border-bottom: 1px solid var(--border); }
+        th { background: #0a0a0a; color: #888; font-weight: 600; }
+        .status { padding: 5px 10px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; }
+        .status.pending { background: rgba(255, 170, 0, 0.2); color: #ffaa00; }
+        .status.completed { background: rgba(0, 230, 184, 0.2); color: #00e6b8; }
+        .btn { background: transparent; color: var(--accent); border: 1px solid var(--accent); padding: 8px 15px; border-radius: 4px; cursor: pointer; font-size: 0.85rem;}
+        .btn:hover { background: var(--accent); color: #fff; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Autonomix <span>War Room</span> (Admin)</h1>
+        <div>Total MRR: <span style="color: #00e6b8; font-weight: bold;">$0.00</span></div>
+    </div>
+
+    <h3>Incoming Foundry Requests</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Client</th>
+                <th>Request Title</th>
+                <th>Submitted</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>user_992@startup.io (Syndicate)</td>
+                <td>Automated Cold Email Personalization Agent</td>
+                <td>2 mins ago</td>
+                <td><span class="status pending">Awaiting Agents</span></td>
+                <td><button class="btn">Process Request</button></td>
+            </tr>
+            <tr>
+                <td>dev_ops_x@corp.net (Operator)</td>
+                <td>Terraform Error Healing Prompt</td>
+                <td>1 hr ago</td>
+                <td><span class="status completed">Delivered</span></td>
+                <td><button class="btn" style="border-color: #333; color: #888;">View Output</button></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foundry | Client Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg: #050505; --surface: #111111; --text: #f0f0f0; --accent: #00e6b8; --border: #222222; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); margin: 0; display: flex; height: 100vh; overflow: hidden; }
+        .sidebar { width: 250px; background: var(--surface); border-right: 1px solid var(--border); padding: 2rem 1rem; display: flex; flex-direction: column; }
+        .logo { font-weight: 800; font-size: 1.2rem; margin-bottom: 3rem; padding-left: 1rem; }
+        .logo span { color: var(--accent); }
+        .nav-item { padding: 10px 15px; color: #888; text-decoration: none; border-radius: 6px; margin-bottom: 5px; font-weight: 600; }
+        .nav-item.active, .nav-item:hover { background: rgba(0, 230, 184, 0.1); color: var(--accent); }
+        .main-content { flex: 1; padding: 3rem; overflow-y: auto; }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 3rem; border-bottom: 1px solid var(--border); padding-bottom: 1rem; }
+        .card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 2rem; margin-bottom: 2rem; }
+        input, textarea { width: 100%; background: #0a0a0a; border: 1px solid var(--border); color: #fff; padding: 15px; border-radius: 8px; margin-bottom: 1rem; font-family: inherit; }
+        button { background: var(--accent); color: #000; border: none; padding: 12px 24px; font-weight: 800; border-radius: 6px; cursor: pointer; }
+        .library-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1.5rem; }
+        .lib-card { background: #0a0a0a; border: 1px solid var(--border); padding: 1.5rem; border-radius: 8px; }
+        .lib-card h4 { margin: 0 0 10px 0; color: var(--accent); }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo">Autonomix <span>Foundry</span></div>
+        <a href="#" class="nav-item active">Craft Architecture</a>
+        <a href="#" class="nav-item">Asset Library</a>
+        <a href="#" class="nav-item">My Requests (1 Pending)</a>
+        <div style="margin-top: auto;">
+            <a href="index.html" class="nav-item">Sign Out</a>
+        </div>
+    </div>
+    <div class="main-content">
+        <div class="header">
+            <h2>Welcome, Operator.</h2>
+            <div>Credits: <span style="color: var(--accent); font-weight: bold;">4 Remaining</span></div>
+        </div>
+        
+        <div class="card">
+            <h3>Request Custom Architecture</h3>
+            <p style="color: #888; margin-bottom: 1.5rem;">Describe the automated workflow or agent system you need. Our AI C-Suite will engineer it.</p>
+            <input type="text" placeholder="Project Title (e.g., Automated Lead Scraper Agent)">
+            <textarea rows="5" placeholder="Describe the inputs, expected outputs, and any strict constraints or APIs involved..."></textarea>
+            <button>Submit to Foundry (-1 Credit)</button>
+        </div>
+
+        <h3>Your Unlocked Asset Library</h3>
+        <div class="library-grid">
+            <div class="lib-card">
+                <h4>The CEO Blueprint</h4>
+                <p style="font-size: 0.85rem; color: #888;">Multi-agent orchestration architecture.</p>
+                <button style="padding: 5px 10px; font-size: 0.8rem; margin-top: 10px; background: transparent; border: 1px solid var(--accent); color: var(--accent);">View Code</button>
+            </div>
+            <div class="lib-card">
+                <h4>Deep-State Orchestrator</h4>
+                <p style="font-size: 0.85rem; color: #888;">Advanced context retention prompt.</p>
+                <button style="padding: 5px 10px; font-size: 0.8rem; margin-top: 10px; background: transparent; border: 1px solid var(--accent); color: var(--accent);">View Code</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
